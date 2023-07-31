@@ -1,1 +1,1 @@
-um_translate_common/i18n.py linguist-vendored
+um_translate_common/i18n.py -linguist-detectable
