@@ -1,3 +1,5 @@
+Side notes: LICENSE.simple_skins is not the license file applying to the main scripts. It only applies to a small proportion of um_translate_common/{generate.py,init.lua}. See their comments for more details.
+
 The MIT License (MIT)
 
 Copyright (c) 2016 TenPlus1
