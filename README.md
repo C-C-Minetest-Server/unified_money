@@ -22,6 +22,7 @@ Mod developers should avoid the direct use of backend APIs, as frontend APIs imp
 
 * [ ] Flow-based Formspec GUI for management
 * [ ] More backend implements
+  * Other backends will be published as their own mod in CDB, not included in this modpack.
 
 ## License
 
