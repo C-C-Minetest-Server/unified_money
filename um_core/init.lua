@@ -89,11 +89,7 @@ function unified_money.add_balance(name,val)
 end
 
 function unified_money.add_balance_safe(name,val)
-    if not unified_money.backend.account_exists(name) then
-        if not unified_money.backend.create_account(name) then
-            return false
-        end
-    end
+    unified_money.ensure_exists(name)
     return unified_money.add_balance(name,val)
 end
 
@@ -105,4 +101,21 @@ function unified_money.del_balance_safe(name,val)
     return unified_money.add_balance_safe(name,val * -1)
 end
 
+function unified_money.transaction(from,to,amount)
+    if amount <= 0 then return false, "AMOUNT_NEG" end
 
+    local from_balance = unified_money.get_balance(from)
+    local to_balance = unified_money.get_balance(to)
+
+    if from_balance == false or to_balance == false then
+        return false, "ACCOUNT_NF"
+    end
+
+    if from_balance < amount then
+        return false, "FROM_NO_MONEY"
+    end
+
+    unified_money.set_balance(from,from_balance - amount)
+    unified_money.set_balance(to,to_balance + amount)
+    return true
+end
