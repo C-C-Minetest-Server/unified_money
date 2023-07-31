@@ -17,3 +17,8 @@ The `um_core` mod handles the conversation between the easy-to-use frontend APIs
 Backends should depend on `um_core` and use `unified_money.register_backend` to register the backend. Only one mod can register a backend, or in other words, only one backend mod can be loaded. The syntax of the backend API is documented in `um_backend_plain/init.lua`.
 
 Mod developers should avoid the direct use of backend APIs, as frontend APIs implements safety checks and logging functions.
+
+## TODOs
+
+* [ ] Flow-based Formspec GUI for management
+* [ ] More backend implements
