@@ -1,0 +1,8 @@
+{
+    "Lua.diagnostics.globals": [
+        "unified_money",
+        "minetest",
+        "um_translate_common",
+        "chatcmdbuilder"
+    ]
+}
