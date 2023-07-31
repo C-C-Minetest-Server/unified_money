@@ -1,1 +1,2 @@
 um_translate_common/i18n.py -linguist-detectable
+um_translate_common/init.lua -linguist-detectable
