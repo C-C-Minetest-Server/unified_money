@@ -33,4 +33,4 @@ This library is distributed in the hope that it will be useful, but WITHOUT ANY 
 
 You should have received a copy of the GNU Lesser General Public License along with this library; if not, write to the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301 USA
 
-Side notes: `LICENSE.simple_skins` is not the license file applying to the main scripts. It only applies to a small proportion of a particular script. See its comments for more details.
+Side notes: `LICENSE.simple_skins` is not the license file applying to the main scripts. It only applies to a small proportion of `um_translate_common/{generate.py,init.lua}`. See their comments for more details.
