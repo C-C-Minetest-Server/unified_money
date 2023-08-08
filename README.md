@@ -7,8 +7,11 @@ This mod provides a unified API for managing in-game currency. With this mod, mo
 * `um_core`: The core. Defines the unified API, and handle registration of backend.
 * `um_translate_common`: Common translatable strings.
 * `um_backend_plain`: A Unified Money backend that works out-of-the-box. It is standalone, which means it doesn't interact with data of other currency mods.
+* `um_backend_dummy`: Testing backend of Unified Money, not storing its data onto disk. USE IT IN TEST ENVIRONMENTS ONLY!
 * `um_frontend_cmd`: A chatcommand-based interface for interacting with Unified Money. Depends on `lib_chatcmdbuilder`.
 * `um_plugin_playername`: Create or delete accounts on player account creation/deletion. In another word, this mod enforces a relationship between player accounts and Unified Money accounts. External mods, backends and frontends assuming this relationship should depend on this mod.
+
+Note that you can only enable one backends at a time, i.e. `um_backend_plain` and `um_backend_dummy` cannot be enabled at the same time.
 
 ## Structure
 
