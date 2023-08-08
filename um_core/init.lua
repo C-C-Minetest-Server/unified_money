@@ -101,10 +101,10 @@ function unified_money.set_balance_safe(name,val)
 end
 
 function unified_money.add_balance(name,val)
-    local balence = unified_money.backend.get_balance(name)
+    local balence = unified_money.get_balance(name)
     if balence == false then return false end
     balence = balence + val
-    return unified_money.set_balance(name,val)
+    return unified_money.set_balance(name,balence)
 end
 
 function unified_money.add_balance_safe(name,val)
