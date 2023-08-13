@@ -25,10 +25,6 @@ local function log(lvl,msg)
     return minetest.log(lvl,"[um_core] " .. msg)
 end
 
-local function logmod(lvl,msg)
-    return minetest.log(lvl,"[" .. (getmod() or "?") .. " -> um_core] " .. msg)
-end
-
 function unified_money.register_backend(backend)
     assert(type(backend) == "table")
     for _,k in ipairs({"get_balance","set_balance","create_account","delete_account","account_exists","list_accounts"}) do
@@ -53,7 +49,7 @@ end
 
 function unified_money.ensure_exists(name)
     if not unified_money.backend.account_exists(name) then
-        logmod("action", "Creating account " .. name .. " for it did not exist")
+        log("action", "Creating account " .. name .. " for it did not exist")
         if not unified_money.backend.create_account(name) then
             return false
         end
@@ -63,12 +59,12 @@ end
 
 function unified_money.create_account(name,default_value)
     default_value = default_value or 0
-    logmod("action","Creating account " .. name .. " with default value " .. str(default_value))
+    log("action","Creating account " .. name .. " with default value " .. str(default_value))
     return unified_money.backend.create_account(name,default_value)
 end
 
 function unified_money.delete_account(name)
-    logmod("action","Delete account " .. name)
+    log("action","Delete account " .. name)
     return unified_money.backend.delete_account(name)
 end
 
@@ -89,7 +85,7 @@ function unified_money.get_balance_safe(name)
 end
 
 function unified_money.set_balance(name,val)
-    logmod("action","Set balance of account " .. name .. " to " .. str(val))
+    log("action","Set balance of account " .. name .. " to " .. str(val))
     return unified_money.backend.set_balance(name,val)
 end
 
