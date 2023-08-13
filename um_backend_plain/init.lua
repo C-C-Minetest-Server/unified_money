@@ -81,4 +81,10 @@ unified_money.register_backend({
         end
         return RLST
     end,
+    -- Return the canonical name of a given account name or nickname
+    -- All `name` values passed into the above functions will be modified by this function.
+    canonical_name = function(name)
+        if name == "#sing" then return "singleplayer" end
+        return name
+    end,
 })

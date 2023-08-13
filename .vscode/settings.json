@@ -3,6 +3,7 @@
         "unified_money",
         "minetest",
         "um_translate_common",
-        "chatcmdbuilder"
+        "chatcmdbuilder",
+        "um_utils"
     ]
 }
