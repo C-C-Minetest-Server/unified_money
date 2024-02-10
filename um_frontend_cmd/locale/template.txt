@@ -1,3 +1,5 @@
 # textdomain: um_frontend_cmd
-Interact with @1=
-Failed.=
+
+##[ init.lua ]##
+Interact with @1=和@1互動
+Failed.=失敗。

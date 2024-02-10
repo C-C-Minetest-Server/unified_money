@@ -93,8 +93,8 @@ strings = {
     "add_balance_past": "Added balance",
     "add_balance_of_past": "Added balance of @1",
     "add_balance_by_past": "Added balance by $@1",
-    "add_balance_of_by_past": "Add balanceed of @1 by $@2",
-    
+    "add_balance_of_by_past": "Added balance of @1 by $@2",
+
     "create_account": "Create account",
     "create_account_name": "Create account @1",
     "create_account_past": "Created account",
@@ -106,16 +106,18 @@ strings = {
     "delete_account_name_past": "Deleted account @1",
 }
 
-luafile_content = prepend + "\n".join([("_utc." + k + "=gt(\"" + v + "\")") for k, v in strings.items()]) + "\n-- END OF TRANSLATIONS"
+luafile_content = prepend + "\n".join([("_utc." + k + "=gt(\"" + v + "\")")
+                                      for k, v in strings.items()]) + "\n-- END OF TRANSLATIONS"
 
 print("Updating init.lua")
 with open("init.lua", "wt", encoding='utf-8') as translation_file:
     translation_file.write(luafile_content)
 
-dkeyStrings = {v: "init.lua" for k,v in strings.items()}
+dkeyStrings = {v: "init.lua" for k, v in strings.items()}
 
 print("Updating template.txt")
 i18n.write_template("locale/template.txt", dkeyStrings, "um_translate_common",)
 for tr_file in i18n.get_existing_tr_files("."):
     print("Updating " + tr_file)
-    i18n.update_tr_file(dkeyStrings, "um_translate_common", path.join("locale/", tr_file))
+    i18n.update_tr_file(dkeyStrings, "um_translate_common",
+                        path.join("locale/", tr_file))

@@ -21,20 +21,20 @@ unified_money = {}
 local getmod = minetest.get_current_modname
 local str = tostring
 
-local function log(lvl,msg)
-    return minetest.log(lvl,"[um_core] " .. msg)
+local function log(lvl, msg)
+    return minetest.log(lvl, "[um_core] " .. msg)
 end
 
 function unified_money.register_backend(backend)
     assert(type(backend) == "table")
-    for _,k in ipairs({"get_balance","set_balance","create_account","delete_account","account_exists","list_accounts"}) do
-        assert(type(backend[k]) == "function","Backend function " .. k .. " not found")
+    for _, k in ipairs({ "get_balance", "set_balance", "create_account", "delete_account", "account_exists", "list_accounts" }) do
+        assert(type(backend[k]) == "function", "Backend function " .. k .. " not found")
     end
     unified_money.backend = backend
     unified_money.register_backend = function()
         error("Please only load ONE Unified Money backend at a time.")
     end
-    log("action","Registered Unified Money backend from mod " .. getmod())
+    log("action", "Registered Unified Money backend from mod " .. getmod())
 end
 
 minetest.register_on_mods_loaded(function()
@@ -67,23 +67,22 @@ function unified_money.ensure_exists(name)
     return true
 end
 
-function unified_money.create_account(name,default_value)
+function unified_money.create_account(name, default_value)
     default_value = default_value or 0
     name = unified_money.canonical_name(name)
-    log("action","Creating account " .. name .. " with default value " .. str(default_value))
-    return unified_money.backend.create_account(name,default_value)
+    log("action", "Creating account " .. name .. " with default value " .. str(default_value))
+    return unified_money.backend.create_account(name, default_value)
 end
 
 function unified_money.delete_account(name)
     name = unified_money.canonical_name(name)
-    log("action","Delete account " .. name)
+    log("action", "Delete account " .. name)
     return unified_money.backend.delete_account(name)
 end
 
 function unified_money.list_accounts()
     return unified_money.backend.list_accounts()
 end
-
 
 function unified_money.get_balance(name)
     return unified_money.backend.get_balance(unified_money.canonical_name(name))
@@ -96,46 +95,46 @@ function unified_money.get_balance_safe(name)
     return unified_money.get_balance(name)
 end
 
-function unified_money.set_balance(name,val)
+function unified_money.set_balance(name, val)
     name = unified_money.canonical_name(name)
-    log("action","Set balance of account " .. name .. " to " .. str(val))
-    return unified_money.backend.set_balance(name,val)
+    log("action", "Set balance of account " .. name .. " to " .. str(val))
+    return unified_money.backend.set_balance(name, val)
 end
 
-function unified_money.set_balance_safe(name,val)
+function unified_money.set_balance_safe(name, val)
     if unified_money.ensure_exists(name) == false then
         return false
     end
-    return unified_money.set_balance(name,val)
+    return unified_money.set_balance(name, val)
 end
 
-function unified_money.add_balance(name,val)
+function unified_money.add_balance(name, val)
     local balence = unified_money.get_balance(name)
     if balence == false then return false end
     balence = balence + val
-    return unified_money.set_balance(name,balence)
+    return unified_money.set_balance(name, balence)
 end
 
-function unified_money.add_balance_safe(name,val)
+function unified_money.add_balance_safe(name, val)
     unified_money.ensure_exists(name)
-    return unified_money.add_balance(name,val)
+    return unified_money.add_balance(name, val)
 end
 
-function unified_money.del_balance(name,val)
-    return unified_money.add_balance(name,val * -1)
+function unified_money.del_balance(name, val)
+    return unified_money.add_balance(name, val * -1)
 end
 
-function unified_money.del_balance_safe(name,val)
-    return unified_money.add_balance_safe(name,val * -1)
+function unified_money.del_balance_safe(name, val)
+    return unified_money.add_balance_safe(name, val * -1)
 end
 
-function unified_money.transaction(from,to,amount)
+function unified_money.transaction(from, to, amount)
     from = unified_money.canonical_name(from)
     to   = unified_money.canonical_name(to)
     if from == to then
         return false, "FROM_TO_EQ"
     end
-    
+
     if amount <= 0 then return false, "AMOUNT_NEG" end
 
     local from_balance = unified_money.get_balance(from)
@@ -149,7 +148,7 @@ function unified_money.transaction(from,to,amount)
         return false, "FROM_NO_MONEY"
     end
 
-    unified_money.del_balance(from,amount)
-    unified_money.add_balance(to,amount)
+    unified_money.del_balance(from, amount)
+    unified_money.add_balance(to, amount)
     return true
 end
