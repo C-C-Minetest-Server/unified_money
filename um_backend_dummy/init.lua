@@ -28,14 +28,14 @@ unified_money.register_backend({
     end,
     -- Set the balance of a account
     -- name: The name of the player
-    set_balance = function(name,val)
+    set_balance = function(name, val)
         if not database[name] then return false end
         database[name] = val
         return true
     end,
     -- Create an account, return true if already exists or created
     -- default_val: int, the value to be set upon creation
-    create_account = function(name,default_val)
+    create_account = function(name, default_val)
         database[name] = (default_val or 0)
         return true
     end,
@@ -52,8 +52,8 @@ unified_money.register_backend({
     -- Return a list (number-indexed table) of account names
     list_accounts = function()
         local RLST = {}
-        for k,_ in pairs(database) do
-            table.insert(RLST,k)
+        for k, _ in pairs(database) do
+            table.insert(RLST, k)
         end
         return RLST
     end,
@@ -64,13 +64,17 @@ unified_money.register_backend({
 
 -- Warning functions
 minetest.register_on_mods_loaded(function()
-    minetest.log("warning","[um_backend_dummy] You are using the dummy backend of Unified Money. NO CHANGES WILL BE SAVED ON DISK!")
-    minetest.log("warning","[um_backend_dummy] If you want to save currency data over restarts, use another backend such as um_backend_plain.")
+    minetest.log("warning",
+        "[um_backend_dummy] You are using the dummy backend of Unified Money. NO CHANGES WILL BE SAVED ON DISK!")
+    minetest.log("warning",
+        "[um_backend_dummy] If you want to save currency data over restarts, use another backend such as um_backend_plain.")
 end)
 
 local orange = minetest.get_color_escape_sequence("orange")
 minetest.register_on_joinplayer(function(ObjectRef, last_login)
     local name = ObjectRef:get_player_name()
-    minetest.chat_send_player(name,orange .. "The dummy backend of Unified Money is used. NO CHANGES WILL BE SAVED ON DISK!")
-    minetest.chat_send_player(name,orange .. "If you want to save currency data over restarts, use another backend such as um_backend_plain.")
+    minetest.chat_send_player(name,
+        orange .. "The dummy backend of Unified Money is used. NO CHANGES WILL BE SAVED ON DISK!")
+    minetest.chat_send_player(name,
+        orange .. "If you want to save currency data over restarts, use another backend such as um_backend_plain.")
 end)

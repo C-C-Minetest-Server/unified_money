@@ -32,13 +32,13 @@ else
 end
 
 local function save()
-    minetest.log("action","[um_backend_plain] Saving file")
-    minetest.safe_file_write(SAVEFILE,minetest.serialize(database))
+    minetest.log("action", "[um_backend_plain] Saving file")
+    minetest.safe_file_write(SAVEFILE, minetest.serialize(database))
 end
 
-minetest.after(30,function()
+minetest.after(30, function()
     save()
-    minetest.after(60,save)
+    minetest.after(60, save)
 end)
 
 minetest.register_on_shutdown(save)
@@ -52,14 +52,14 @@ unified_money.register_backend({
     end,
     -- Set the balance of a account
     -- name: The name of the player
-    set_balance = function(name,val)
+    set_balance = function(name, val)
         if not database[name] then return false end
         database[name] = val
         return true
     end,
     -- Create an account, return true if already exists or created
     -- default_val: int, the value to be set upon creation
-    create_account = function(name,default_val)
+    create_account = function(name, default_val)
         database[name] = (default_val or 0)
         return true
     end,
@@ -76,8 +76,8 @@ unified_money.register_backend({
     -- Return a list (number-indexed table) of account names
     list_accounts = function()
         local RLST = {}
-        for k,_ in pairs(database) do
-            table.insert(RLST,k)
+        for k, _ in pairs(database) do
+            table.insert(RLST, k)
         end
         return RLST
     end,

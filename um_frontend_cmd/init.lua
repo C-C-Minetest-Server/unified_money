@@ -21,7 +21,7 @@ local S = minetest.get_translator("um_frontend_cmd")
 local _utc = um_translate_common
 
 local cmd = chatcmdbuilder.register("um", {
-    description = S("Interact with @1",_utc.um_brand()),
+    description = S("Interact with @1", _utc.um_brand()),
 })
 
 cmd:sub("create :username", {
@@ -30,7 +30,7 @@ cmd:sub("create :username", {
         server = true
     },
     func = function(name, username)
-        local status = unified_money.create_account(username,0)
+        local status = unified_money.create_account(username, 0)
         if status then
             return true, _utc.create_account_name_past(username)
         else
@@ -59,7 +59,7 @@ cmd:sub("get :username", {
     func = function(name, username)
         local status = unified_money.get_balance(username)
         if status then
-            return true, _utc.balance_of_show(username,status)
+            return true, _utc.balance_of_show(username, status)
         else
             return false, S("Failed.")
         end
@@ -69,9 +69,9 @@ cmd:sub("get :username", {
 cmd:sub("set :username :val:int", {
     description = _utc.set_balance(),
     func = function(name, username, val)
-        local status = unified_money.set_balance(username,val)
+        local status = unified_money.set_balance(username, val)
         if status then
-            return true, _utc.set_balance_of_to(username,val)
+            return true, _utc.set_balance_of_to(username, val)
         else
             return false, S("Failed.")
         end
