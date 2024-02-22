@@ -17,8 +17,8 @@
     USA
 ]]
 
-local MP = minetest.get_worldpath()
-local SAVEFILE = MP .. "/um_backend_plain.lua"
+local WP = minetest.get_worldpath()
+local SAVEFILE = WP .. "/um_backend_plain.lua"
 
 local savefile_fd = io.open(SAVEFILE, "r")
 local database
