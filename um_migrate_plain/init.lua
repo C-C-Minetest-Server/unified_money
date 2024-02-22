@@ -40,7 +40,7 @@ minetest.register_chatcommand("um_migrate_plain", {
         local db = minetest.deserialize(f_txt)
         for name, balance in pairs(db) do
             i = i + 1
-            unified_money.set_balance(name, balance)
+            unified_money.set_balance(name, balance, true)
         end
 
         return true, S("Migration finished, @1 records loaded", i)

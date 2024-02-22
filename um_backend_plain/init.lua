@@ -52,8 +52,10 @@ unified_money.register_backend({
     end,
     -- Set the balance of a account
     -- name: The name of the player
-    set_balance = function(name, val)
-        if not database[name] then return false end
+    set_balance = function(name, val, forced)
+        if not forced then
+            if not database[name] then return false end
+        end
         database[name] = val
         return true
     end,

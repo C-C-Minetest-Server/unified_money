@@ -95,10 +95,10 @@ function unified_money.get_balance_safe(name)
     return unified_money.get_balance(name)
 end
 
-function unified_money.set_balance(name, val)
+function unified_money.set_balance(name, val, forced)
     name = unified_money.canonical_name(name)
     log("action", "Set balance of account " .. name .. " to " .. str(val))
-    return unified_money.backend.set_balance(name, val)
+    return unified_money.backend.set_balance(name, val, forced)
 end
 
 function unified_money.set_balance_safe(name, val)

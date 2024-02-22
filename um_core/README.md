@@ -28,9 +28,9 @@ Return account balance of the account of the given `name`. Return `false` if the
 
 Return account balance of the account of the given `name`. A `0` will be returned in case if the account is not found.
 
-## `unified_money.set_balance(name,val)`
+## `unified_money.set_balance(name,val[, forced])`
 
-Set the balance of the account of the given `name`. Return `false` if the account is not found.
+Set the balance of the account of the given `name`. If `forced` is `true`, create and account if not exist. Return `false` if the account is not found.
 
 ## `unified_money.set_balance_safe(name,val)`
 
