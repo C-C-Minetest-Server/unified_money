@@ -37,6 +37,13 @@ function unified_money.register_backend(backend)
     log("action", "Registered Unified Money backend from mod " .. getmod())
 end
 
+local function log_on_success(status, lvl, msg)
+    if status then
+        log(lvl, msg)
+    end
+    return status
+end
+
 minetest.register_on_mods_loaded(function()
     if not unified_money.backend then
         error("Please load ONE Unified Money backend.")
@@ -76,8 +83,10 @@ end
 
 function unified_money.delete_account(name)
     name = unified_money.canonical_name(name)
-    log("action", "Delete account " .. name)
-    return unified_money.backend.delete_account(name)
+    return log_on_success(
+        unified_money.backend.delete_account(name),
+        "action", "Delete account " .. name
+    )
 end
 
 function unified_money.list_accounts()
@@ -97,8 +106,10 @@ end
 
 function unified_money.set_balance(name, val, forced)
     name = unified_money.canonical_name(name)
-    log("action", "Set balance of account " .. name .. " to " .. str(val))
-    return unified_money.backend.set_balance(name, val, forced)
+    return log_on_success(
+        unified_money.backend.set_balance(name, val, forced),
+        "action", "Set balance of account " .. name .. " to " .. str(val)
+    )
 end
 
 function unified_money.set_balance_safe(name, val)
