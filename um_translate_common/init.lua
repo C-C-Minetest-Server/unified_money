@@ -17,8 +17,6 @@
     USA
 ]]
 
--- This file is dynamically generated.
--- DO ALL THE MODIFICATIONS IN generate.py.
 local S
 if minetest.get_translator then
     S = minetest.get_translator("um_translate_common")
@@ -31,40 +29,42 @@ else
         end)
     end
 end
+local NS = function(s) return s end
 local function gt(str)
     return function(...)
         return S(str,...)
     end
 end
+
 um_translate_common = {}
 local _utc = um_translate_common
 
 -- START TRANSLATIONS
-_utc.um_brand=gt("Unified Money")
-_utc.balance=gt("Balance")
-_utc.balance_show=gt("Balance: $@1")
-_utc.balance_of=gt("Balance of @1")
-_utc.balance_of_show=gt("Balance of @1: $@2")
-_utc.get_balance=gt("Get balance")
-_utc.get_balance_of=gt("Get balance of @1")
-_utc.set_balance=gt("Set balance")
-_utc.set_balance_of=gt("Set balance of @1")
-_utc.set_balance_to=gt("Set balance to $@1")
-_utc.set_balance_of_to=gt("Set balance of @1 to $@2")
-_utc.add_balance=gt("Add balance")
-_utc.add_balance_of=gt("Add balance of @1")
-_utc.add_balance_by=gt("Add balance by $@1")
-_utc.add_balance_of_by=gt("Add balance of @1 by $@2")
-_utc.add_balance_past=gt("Added balance")
-_utc.add_balance_of_past=gt("Added balance of @1")
-_utc.add_balance_by_past=gt("Added balance by $@1")
-_utc.add_balance_of_by_past=gt("Added balance of @1 by $@2")
-_utc.create_account=gt("Create account")
-_utc.create_account_name=gt("Create account @1")
-_utc.create_account_past=gt("Created account")
-_utc.create_account_name_past=gt("Created account @1")
-_utc.delete_account=gt("Delete account")
-_utc.delete_account_name=gt("Delete account @1")
-_utc.delete_account_past=gt("Deleted account")
-_utc.delete_account_name_past=gt("Deleted account @1")
+_utc.um_brand=gt(NS("Unified Money"))
+_utc.balance=gt(NS("Balance"))
+_utc.balance_show=gt(NS("Balance: $@1"))
+_utc.balance_of=gt(NS("Balance of @1"))
+_utc.balance_of_show=gt(NS("Balance of @1: $@2"))
+_utc.get_balance=gt(NS("Get balance"))
+_utc.get_balance_of=gt(NS("Get balance of @1"))
+_utc.set_balance=gt(NS("Set balance"))
+_utc.set_balance_of=gt(NS("Set balance of @1"))
+_utc.set_balance_to=gt(NS("Set balance to $@1"))
+_utc.set_balance_of_to=gt(NS("Set balance of @1 to $@2"))
+_utc.add_balance=gt(NS("Add balance"))
+_utc.add_balance_of=gt(NS("Add balance of @1"))
+_utc.add_balance_by=gt(NS("Add balance by $@1"))
+_utc.add_balance_of_by=gt(NS("Add balance of @1 by $@2"))
+_utc.add_balance_past=gt(NS("Added balance"))
+_utc.add_balance_of_past=gt(NS("Added balance of @1"))
+_utc.add_balance_by_past=gt(NS("Added balance by $@1"))
+_utc.add_balance_of_by_past=gt(NS("Added balance of @1 by $@2"))
+_utc.create_account=gt(NS("Create account"))
+_utc.create_account_name=gt(NS("Create account @1"))
+_utc.create_account_past=gt(NS("Created account"))
+_utc.create_account_name_past=gt(NS("Created account @1"))
+_utc.delete_account=gt(NS("Delete account"))
+_utc.delete_account_name=gt(NS("Delete account @1"))
+_utc.delete_account_past=gt(NS("Deleted account"))
+_utc.delete_account_name_past=gt(NS("Deleted account @1"))
 -- END OF TRANSLATIONS

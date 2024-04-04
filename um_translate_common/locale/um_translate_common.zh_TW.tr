@@ -1,4 +1,6 @@
 # textdomain: um_translate_common
+
+##[ init.lua ]##
 Unified Money=統一金錢系統
 Balance=餘額
 Balance: $@1=餘額：$@1

@@ -1,4 +1,6 @@
 # textdomain: um_translate_common
+
+##[ init.lua ]##
 Unified Money=
 Balance=
 Balance: $@1=

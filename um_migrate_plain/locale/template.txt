@@ -1,0 +1,6 @@
+# textdomain: um_migrate_plain
+
+##[ init.lua ]##
+Reads data of um_backend_plain and write it into the currently active backend.=
+um_backend_plain savefile not found.=
+Migration finished, @1 records loaded=
