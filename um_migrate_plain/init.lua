@@ -26,7 +26,7 @@ local S = minetest.get_translator("um_migrate_plain")
 minetest.register_chatcommand("um_migrate_plain", {
     description = S("Reads data of um_backend_plain and write it into the currently active backend."),
     privs = { server = true },
-    func = function(name, param)
+    func = function()
         local f = io.open(minetest.get_worldpath() .. "/um_backend_plain.lua", "r")
         if not f then
             return false, S("um_backend_plain savefile not found.")
@@ -34,7 +34,7 @@ minetest.register_chatcommand("um_migrate_plain", {
 
         local f_txt = f:read("*a")
         f:close()
-        f = nil
+        f = nil -- luacheck: no unused
 
         local i = 0
         local db = minetest.deserialize(f_txt)

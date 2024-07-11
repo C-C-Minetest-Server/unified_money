@@ -27,7 +27,7 @@ if not savefile_fd then
 else
     local savefile_txt = savefile_fd:read("*a")
     savefile_fd:close()
-    savefile_fd = nil
+    savefile_fd = nil -- luacheck: no unused
     database = minetest.deserialize(savefile_txt) or {}
 end
 

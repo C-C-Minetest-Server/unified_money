@@ -27,7 +27,14 @@ end
 
 function unified_money.register_backend(backend)
     assert(type(backend) == "table")
-    for _, k in ipairs({ "get_balance", "set_balance", "create_account", "delete_account", "account_exists", "list_accounts" }) do
+    for _, k in ipairs({
+        "get_balance",
+        "set_balance",
+        "create_account",
+        "delete_account",
+        "account_exists",
+        "list_accounts"
+    }) do
         assert(type(backend[k]) == "function", "Backend function " .. k .. " not found")
     end
     unified_money.backend = backend

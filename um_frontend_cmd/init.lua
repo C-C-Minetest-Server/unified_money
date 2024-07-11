@@ -29,7 +29,7 @@ cmd:sub("create :username", {
     privs = {
         server = true
     },
-    func = function(name, username)
+    func = function(_, username)
         local status = unified_money.create_account(username, 0)
         if status then
             return true, _utc.create_account_name_past(username)
@@ -44,7 +44,7 @@ cmd:sub("delete :username", {
     privs = {
         server = true
     },
-    func = function(name, username)
+    func = function(_, username)
         local status = unified_money.delete_account(username)
         if status then
             return true, _utc.delete_account_name_past(username)
@@ -56,7 +56,7 @@ cmd:sub("delete :username", {
 
 cmd:sub("get :username", {
     description = _utc.get_balance(),
-    func = function(name, username)
+    func = function(_, username)
         local status = unified_money.get_balance(username)
         if status then
             return true, _utc.balance_of_show(username, status)
@@ -68,7 +68,7 @@ cmd:sub("get :username", {
 
 cmd:sub("set :username :val:int", {
     description = _utc.set_balance(),
-    func = function(name, username, val)
+    func = function(_, username, val)
         local status = unified_money.set_balance(username, val)
         if status then
             return true, _utc.set_balance_of_to(username, val)
