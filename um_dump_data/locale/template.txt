@@ -1,0 +1,6 @@
+# textdomain: um_dump_data
+
+##[ init.lua ]##
+Dump all data of the current backend to a um_backend_plain-compactibible file=
+<path, relative to world directory>=
+Data dumped to @1=
