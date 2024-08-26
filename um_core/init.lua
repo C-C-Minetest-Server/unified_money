@@ -73,7 +73,7 @@ end
 function unified_money.ensure_exists(name)
     name = unified_money.canonical_name(name)
     if not unified_money.backend.account_exists(name) then
-        log("action", "Creating account " .. name .. " for it did not exist")
+        log("action", "Creating account " .. name .. " because it did not exist")
         if not unified_money.backend.create_account(name) then
             return false
         end
