@@ -17,7 +17,7 @@
     USA
 ]]
 
-local S = minetest.get_translator("um_frontend_cmd")
+local S = core.get_translator("um_frontend_cmd")
 local _utc = um_translate_common
 
 local cmd = chatcmdbuilder.register("um", {

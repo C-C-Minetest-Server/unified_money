@@ -18,8 +18,8 @@
 ]]
 
 local S
-if minetest.get_translator then
-    S = minetest.get_translator("um_translate_common")
+if core.get_translator then
+    S = core.get_translator("um_translate_common")
 else
     -- Extract of the simple skins mod, MIT License text at root/LICENSE.simple_skins
     S = function(str, ...)

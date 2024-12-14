@@ -65,19 +65,19 @@ unified_money.register_backend({
 })
 
 -- Warning functions
-minetest.register_on_mods_loaded(function()
-    minetest.log("warning",
+core.register_on_mods_loaded(function()
+    core.log("warning",
         "[um_backend_dummy] You are using the dummy backend of Unified Money. NO CHANGES WILL BE SAVED ON DISK!")
-    minetest.log("warning",
+    core.log("warning",
         "[um_backend_dummy] If you want to save currency data over restarts, " ..
         "use another backend such as um_backend_plain.")
 end)
 
-local orange = minetest.get_color_escape_sequence("orange")
-minetest.register_on_joinplayer(function(ObjectRef)
+local orange = core.get_color_escape_sequence("orange")
+core.register_on_joinplayer(function(ObjectRef)
     local name = ObjectRef:get_player_name()
-    minetest.chat_send_player(name,
+    core.chat_send_player(name,
         orange .. "The dummy backend of Unified Money is used. NO CHANGES WILL BE SAVED ON DISK!")
-    minetest.chat_send_player(name,
+    core.chat_send_player(name,
         orange .. "If you want to save currency data over restarts, use another backend such as um_backend_plain.")
 end)

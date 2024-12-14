@@ -17,17 +17,17 @@
     USA
 ]]
 
-if minetest.get_modpath("um_backend_plain") then
+if core.get_modpath("um_backend_plain") then
     error("[um_migrate_plain] This mod conflicts with um_backend_plain. Please install another backend.")
 end
 
-local S = minetest.get_translator("um_migrate_plain")
+local S = core.get_translator("um_migrate_plain")
 
-minetest.register_chatcommand("um_migrate_plain", {
+core.register_chatcommand("um_migrate_plain", {
     description = S("Reads data of um_backend_plain and write it into the currently active backend."),
     privs = { server = true },
     func = function()
-        local f = io.open(minetest.get_worldpath() .. "/um_backend_plain.lua", "r")
+        local f = io.open(core.get_worldpath() .. "/um_backend_plain.lua", "r")
         if not f then
             return false, S("um_backend_plain savefile not found.")
         end
@@ -37,7 +37,7 @@ minetest.register_chatcommand("um_migrate_plain", {
         f = nil -- luacheck: no unused
 
         local i = 0
-        local db = minetest.deserialize(f_txt)
+        local db = core.deserialize(f_txt)
         for name, balance in pairs(db) do
             i = i + 1
             unified_money.set_balance(name, balance, true)

@@ -19,14 +19,14 @@
 
 -- We use on_joinplayer to regenerate (somehow accidentally) deleted accounts
 
-minetest.register_on_joinplayer(function(ObjectRef)
+core.register_on_joinplayer(function(ObjectRef)
     local name = ObjectRef:get_player_name()
     unified_money.ensure_exists(name)
 end)
 
 do
-    local old_remove_player = minetest.remove_player
-    function minetest.remove_player(name) -- luacheck: ignore 122
+    local old_remove_player = core.remove_player
+    function core.remove_player(name) -- luacheck: ignore 122
         local status = old_remove_player(name)
         if status == 0 then
             unified_money.delete_account(name)

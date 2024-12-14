@@ -17,7 +17,7 @@
     USA
 ]]
 
-local WP = minetest.get_worldpath()
+local WP = core.get_worldpath()
 local SAVEFILE = WP .. "/um_backend_plain.lua"
 
 local savefile_fd = io.open(SAVEFILE, "r")
@@ -28,20 +28,20 @@ else
     local savefile_txt = savefile_fd:read("*a")
     savefile_fd:close()
     savefile_fd = nil -- luacheck: no unused
-    database = minetest.deserialize(savefile_txt) or {}
+    database = core.deserialize(savefile_txt) or {}
 end
 
 local function save()
-    minetest.log("action", "[um_backend_plain] Saving file")
-    minetest.safe_file_write(SAVEFILE, minetest.serialize(database))
+    core.log("action", "[um_backend_plain] Saving file")
+    core.safe_file_write(SAVEFILE, core.serialize(database))
 end
 
-minetest.after(30, function()
+core.after(30, function()
     save()
-    minetest.after(60, save)
+    core.after(60, save)
 end)
 
-minetest.register_on_shutdown(save)
+core.register_on_shutdown(save)
 
 -- All functions return boolean indicating success unless otherwise specified
 unified_money.register_backend({

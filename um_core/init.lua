@@ -18,11 +18,11 @@
 ]]
 
 unified_money = {}
-local getmod = minetest.get_current_modname
+local getmod = core.get_current_modname
 local str = tostring
 
 local function log(lvl, msg)
-    return minetest.log(lvl, "[um_core] " .. msg)
+    return core.log(lvl, "[um_core] " .. msg)
 end
 
 function unified_money.register_backend(backend)
@@ -51,7 +51,7 @@ local function log_on_success(status, lvl, msg)
     return status
 end
 
-minetest.register_on_mods_loaded(function()
+core.register_on_mods_loaded(function()
     if not unified_money.backend then
         error("Please load ONE Unified Money backend.")
     end

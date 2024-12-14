@@ -17,7 +17,7 @@
     USA
 ]]
 
-local S = minetest.get_translator("um_dump_data")
+local S = core.get_translator("um_dump_data")
 
 local function get_dump_table()
     local dump_table = {}
@@ -27,8 +27,8 @@ local function get_dump_table()
     return dump_table
 end
 
-local WP = minetest.get_worldpath()
-minetest.register_chatcommand("um_dump_data", {
+local WP = core.get_worldpath()
+core.register_chatcommand("um_dump_data", {
     description = S("Dump all data of the current backend to a um_backend_plain-compactibible file"),
     param = S("<path, relative to world directory>"),
     privs = { server = true },
@@ -39,9 +39,9 @@ minetest.register_chatcommand("um_dump_data", {
         end
 
         local dump_table = get_dump_table()
-        local serialized = minetest.serialize(dump_table)
+        local serialized = core.serialize(dump_table)
         local path = WP .. DIR_DELIM .. param
-        minetest.safe_file_write(path, serialized)
+        core.safe_file_write(path, serialized)
         return true, S("Data dumped to @1", path)
     end,
 })
