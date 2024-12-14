@@ -80,3 +80,33 @@ cmd:sub("set :username :val:int", {
         end
     end,
 })
+
+cmd:sub("add :username :val:int", {
+    description = _utc.add_balance(),
+    privs = {
+        server = true
+    },
+    func = function(_, username, val)
+        local status = unified_money.add_balance(username, val)
+        if status then
+            return true, _utc.add_balance_of_by_past(username, val)
+        else
+            return false, S("Failed.")
+        end
+    end,
+})
+
+cmd:sub("del :username :val:int", {
+    description = _utc.add_balance(),
+    privs = {
+        server = true
+    },
+    func = function(_, username, val)
+        local status = unified_money.del_balance(username, val)
+        if status then
+            return true, _utc.add_balance_of_by_past(username, -val)
+        else
+            return false, S("Failed.")
+        end
+    end,
+})
