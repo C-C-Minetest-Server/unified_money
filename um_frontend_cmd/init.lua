@@ -68,6 +68,9 @@ cmd:sub("get :username", {
 
 cmd:sub("set :username :val:int", {
     description = _utc.set_balance(),
+    privs = {
+        server = true
+    },
     func = function(_, username, val)
         local status = unified_money.set_balance(username, val)
         if status then
